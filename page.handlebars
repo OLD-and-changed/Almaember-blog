@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{article.title}} - Almaember's blog</title>
+    <link rel="stylesheet" type="text/css" href="blog.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Posts</a></li>
+            <li><a href="#">About me</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <!-- main content -->
+        <article>
+            {{{article.content}}}
+        </article>
+
+        <!-- sidebar -->
+        <aside>
+            <section id="pfp">
+                <img src="img/pfp.jpg" type="image/jpeg">
+            </section>
+            <section id="about">
+                <h1>Almaember</h1>
+                <p>I'm a 15 year old hobby developer. I am interested in, among others:
+                </p>
+                <ul>
+                    <li>Example</li>
+                    <li>Example</li>
+                    <li>Example</li>
+                    <li>Example</li>
+                    <li>Example</li>
+                </ul>
+            </section>
+        </aside>
+    </main>
+    <footer>
+        <p>&copy; 2021 almaember.com. For licensing details, see <a href="licensing.html">Licensing</a></p>
+        <p>Made with ❤ and without JavaScript by <a href="https://twitter.com/@dralmaember">almaember</a>.</p>
+    </footer>
+</body>
+</html>
