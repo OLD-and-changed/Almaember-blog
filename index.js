@@ -45,14 +45,14 @@ articleContents.forEach(article => {
     let articleText = article.__content;
 
     let articleUrl = 
-        `${articleDate.getFullYear()}/${articleDate.getMonth()}/${path.parse(article.filename).name}.html`;
+        `${articleDate.getFullYear()}/${articleDate.getMonth() + 1}/${path.parse(article.filename).name}.html`;
     let articleHTML = marked(articleText);
 
     let templateParameters = {
         article: {
             title: article.title,
             content: articleHTML,
-            date: articleDate
+            date: `${articleDate.getFullYear()}-${articleDate.getMonth() + 1}-${articleDate.getDay()}`
         }
     };
 
