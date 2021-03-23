@@ -1,14 +1,11 @@
 const fs = require("fs");
+const path = require("path");
 
 const {compile} = require("handlebars");
 const marked = require("marked");
 const fm = require("yaml-front-matter");
 
 let template = compile(fs.readFileSync("page.handlebars").toString());
-
-// prepare the output folder
-fs.rmdirSync("output", {recursive: true, force: true});
-fs.mkdirSync("output");
 
 // get a list of article files (*.md)
 
@@ -40,3 +37,32 @@ articleContents.sort((a, b) => {
     // a must be equal to b
     return 0;
 }).reverse();
+
+// generate article files
+
+articleContents.forEach(article => {
+    let articleDate = article.date;
+    let articleText = article.__content;
+
+    let articleUrl = 
+        `${articleDate.getFullYear()}/${articleDate.getMonth()}/${path.parse(article.filename).name}.html`;
+    let articleHTML = marked(articleText);
+
+    let templateParameters = {
+        article: {
+            title: article.title,
+            content: articleHTML,
+            date: articleDate
+        }
+    };
+
+    let filename = path.join("output", articleUrl);
+
+    fs.mkdirSync(path.dirname(filename), {recursive: true});
+    fs.writeFileSync(filename, template(templateParameters));
+});
+
+// finish by copying static files
+
+fs.copyFileSync("blog.css", "output/blog.css"); // css file
+
