@@ -176,22 +176,22 @@ nav > ul > li > :visited {
 
 /*#region code block styles*/
 
-code {
+pre {
     width: 100%;
 
     background-color: dimgrey;
     font-family: monospace;
-}
-
-code > pre {
-    width: 90%;
-    background-color: inherit;
 
     border: 3px solid black;
 
     border-radius: 20px;
 
     padding: 10px;
+}
+
+pre > code {
+    width: 90%;
+    background-color: inherit;
 
     overflow-x: auto;
 }
