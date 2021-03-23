@@ -4,6 +4,19 @@ const path = require("path");
 const {compile} = require("handlebars");
 const marked = require("marked");
 const fm = require("yaml-front-matter");
+const minifier = require("html-minifier");
+const CleanCSS = require("clean-css");
+
+function minify(html) {
+    return minifier.minify(html, {
+        collapseWhitespace: true,
+        conservativeCollapse: false,
+        decodeEntities: true,
+        removeComments: true,
+        sortAttributes: true,
+        sortClassName: true
+    });
+}
 
 let template = compile(fs.readFileSync("page.handlebars").toString());
 
@@ -58,7 +71,7 @@ articleContents.forEach(article => {
     let filename = path.join("output", article.url);
 
     fs.mkdirSync(path.dirname(filename), {recursive: true});
-    fs.writeFileSync(filename, template(templateParameters));
+    fs.writeFileSync(filename, minify(template(templateParameters)));
 });
 
 // finish by copying static files
@@ -107,7 +120,7 @@ pageContents.forEach(article => {
     let filename = path.join("output", articleUrl);
 
     fs.mkdirSync(path.dirname(filename), {recursive: true});
-    fs.writeFileSync(filename, template(templateParameters));
+    fs.writeFileSync(filename, minify(template(templateParameters)));
 });
 
 
