@@ -19,7 +19,9 @@
     <main>
         <!-- main content -->
         <article>
-            <p>Published: {{article.date}}</p>
+            {{#if article.date}}
+                <p>Published: {{article.date}}</p>
+            {{/if}}
             <h1>{{article.title}}</h1>
             {{{article.content}}}
         </article>

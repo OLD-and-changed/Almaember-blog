@@ -4,7 +4,7 @@ date: 2021-02-16
 ---
 JavaScript is overused. That's a fact. People have been using it for everything, and that is way too much. They have built entire office suites based on JavaScript. They have worried way too much about whether they could make something in JavaScript, forgetting to think about whether they should.
 
-The reason I'm bringing this up is because I'm annoyed by it. I'm annoyed that a blog uses 13MBs of JavaScript heap to display text (I will get rid of Blogger soon, I promise). To be fair, [one of the very first websites][1] also seems to use like 6MBs, so it might not entirely be the page's fault. But still you have to allocate memory to the JavaScript engine, apparently even if there are no scripts being executed.
+The reason I'm bringing this up is because I'm annoyed by it. I'm annoyed that a blog uses 13MBs of JavaScript heap to display text (~~I will get rid of Blogger soon, I promise~~ I got rid of blogger). To be fair, [one of the very first websites][1] also seems to use like 6MBs, so it might not entirely be the page's fault. But still you have to allocate memory to the JavaScript engine, apparently even if there are no scripts being executed.
 
 And this is nothing compared to the main problem, client side rendering. Someone thought it was a good idea, to take perfectly working server-generated and static websites, and throw React at it to make it more modern. Did it make the site better? No, it was a static site, it worked perfectly before. Did it make it more bloated though? Absolutely!
 

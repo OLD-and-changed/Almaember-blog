@@ -66,3 +66,52 @@ articleContents.forEach(article => {
 
 fs.copyFileSync("blog.css", "output/blog.css"); // css file
 
+
+
+// generate the article list
+let articleListPage;
+
+articleContents.forEach(article => {
+    articleListPage += `##${article.title}
+    *Posted on: ${article.date.getFullYear()}-${article.date.getMonth() + 1}-${article.date.getDay()}*
+    `;
+});
+
+fs.writeFileSync("pages/posts.md", articleListPage);
+
+// also generate pages
+let pageFiles = fs.readdirSync("pages")
+    .filter( filename => filename.match(/.*\.md/) );
+console.log(pageFiles);
+
+let pageContents = pageFiles.map( filename => {
+    let articleData = fs.readFileSync(`pages/${filename}`);
+    let article = fm.loadFront(articleData);
+    article.filename = filename;
+
+    return article;
+});
+
+pageContents.forEach(article => {
+    let articleText = article.__content;
+
+    let articleUrl = 
+        `${path.parse(article.filename).name}.html`;
+    let articleHTML = marked(articleText);
+
+    let templateParameters = {
+        article: {
+            title: article.title,
+            content: articleHTML,
+        }
+    };
+
+    let filename = path.join("output", articleUrl);
+
+    fs.mkdirSync(path.dirname(filename), {recursive: true});
+    fs.writeFileSync(filename, template(templateParameters));
+});
+
+
+// get rid of the temprary posts.md
+fs.rmSync("pages/posts.md");
