@@ -18,6 +18,7 @@ let articleContents = articleFiles.map( filename => {
     let articleData = fs.readFileSync(`articles/${filename}`);
     let article = fm.loadFront(articleData);
     article.filename = filename;
+    article.url = `${article.date.getFullYear()}/${article.date.getMonth() + 1}/${path.parse(article.filename).name}.html`;
 
     return article;
 });
@@ -44,8 +45,6 @@ articleContents.forEach(article => {
     let articleDate = article.date;
     let articleText = article.__content;
 
-    let articleUrl = 
-        `${articleDate.getFullYear()}/${articleDate.getMonth() + 1}/${path.parse(article.filename).name}.html`;
     let articleHTML = marked(articleText);
 
     let templateParameters = {
@@ -56,7 +55,7 @@ articleContents.forEach(article => {
         }
     };
 
-    let filename = path.join("output", articleUrl);
+    let filename = path.join("output", article.url);
 
     fs.mkdirSync(path.dirname(filename), {recursive: true});
     fs.writeFileSync(filename, template(templateParameters));
@@ -69,12 +68,11 @@ fs.copyFileSync("blog.css", "output/blog.css"); // css file
 
 
 // generate the article list
-let articleListPage;
+let articleListPage = "";
 
 articleContents.forEach(article => {
-    articleListPage += `##${article.title}
-    *Posted on: ${article.date.getFullYear()}-${article.date.getMonth() + 1}-${article.date.getDay()}*
-    `;
+    articleListPage += `## [${article.title}](/${article.url})\n
+*Posted on: ${article.date.getFullYear()}-${article.date.getMonth() + 1}-${article.date.getDay()}*\n\n`;
 });
 
 fs.writeFileSync("pages/posts.md", articleListPage);
