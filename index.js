@@ -74,11 +74,6 @@ articleContents.forEach(article => {
     fs.writeFileSync(filename, minify(template(templateParameters)));
 });
 
-// finish by copying static files
-
-fs.copyFileSync("blog.css", "output/blog.css"); // css file
-
-
 
 // generate the article list
 let articleListPage = "";
@@ -126,3 +121,11 @@ pageContents.forEach(article => {
 
 // get rid of the temprary posts.md
 fs.rmSync("pages/posts.md");
+
+
+// copy and minify the CSS file
+let blogCSS = fs.readFileSync("blog.css");
+let cleanCSSOptions = {
+    level: 2
+};
+fs.writeFileSync("output/blog.css", new CleanCSS(cleanCSSOptions).minify(blogCSS).styles);
