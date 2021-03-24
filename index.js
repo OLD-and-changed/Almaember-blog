@@ -68,7 +68,7 @@ articleContents.forEach(article => {
         }
     };
 
-    let filename = path.join("output", article.url);
+    let filename = path.join("docs", article.url);
 
     fs.mkdirSync(path.dirname(filename), {recursive: true});
     fs.writeFileSync(filename, minify(template(templateParameters)));
@@ -112,7 +112,7 @@ pageContents.forEach(article => {
         }
     };
 
-    let filename = path.join("output", articleUrl);
+    let filename = path.join("docs", articleUrl);
 
     fs.mkdirSync(path.dirname(filename), {recursive: true});
     fs.writeFileSync(filename, minify(template(templateParameters)));
@@ -128,4 +128,4 @@ let blogCSS = fs.readFileSync("blog.css");
 let cleanCSSOptions = {
     level: 2
 };
-fs.writeFileSync("output/blog.css", new CleanCSS(cleanCSSOptions).minify(blogCSS).styles);
+fs.writeFileSync("docs/blog.css", new CleanCSS(cleanCSSOptions).minify(blogCSS).styles);
