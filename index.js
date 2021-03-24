@@ -129,3 +129,6 @@ let cleanCSSOptions = {
     level: 2
 };
 fs.writeFileSync("docs/blog.css", new CleanCSS(cleanCSSOptions).minify(blogCSS).styles);
+
+// add CNAME file for GH Pages
+fs.writeFileSync("docs/CNAME", "almaember.com");
