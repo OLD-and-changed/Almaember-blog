@@ -18,10 +18,10 @@ Especially don't use webapps if your app doesn't need to interact with the serve
 
 TL;DR Use webapps if you mainly have content and not much interaction (forums are in this category because you are mostly reading previous posts and only sometimes commenting). If your aim is interactivity though, use native apps. Desktop development shouldn't be the taboo it is today.
 
-A few tips
+## A few tips
 Here are a few resources for developing desktop applications:
 
-UI Frameworks
+### UI Frameworks
 * [Proton Native][2]: not great but not terrible either
 * [C++][3]: check out these libraries if you're using C++
 * For Python you can use Tkinter, PySide2, pyQt, or GTK
