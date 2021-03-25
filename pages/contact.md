@@ -4,7 +4,7 @@ title: Contact
 ## Email
 If you want to write me an email (I usually prefer this), please write to [almaember@disroot.org][2].
 
-If possible, use my PGP public key, and attack yours:
+If possible, use my PGP public key, and attach yours:
 
 ```
 -----BEGIN PGP PUBLIC KEY BLOCK-----
